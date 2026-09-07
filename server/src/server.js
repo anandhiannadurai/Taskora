@@ -27,6 +27,10 @@ app.use('/api/insights', insightsRoutes);
 app.use('/api/user', userRoutes);
 
 // Root Health Endpoint
+app.get('/', (req, res) => {
+  res.send('Taskora API Server is Running 🚀');
+});
+
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
