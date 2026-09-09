@@ -46,15 +46,6 @@ export const AuthProvider = ({ children }) => {
     return res;
   };
 
-  const demoLogin = async (role = 'Admin') => {
-    const res = await api.auth.demoLogin(role);
-    if (res.success) {
-      localStorage.setItem('taskora_token', res.token);
-      setUser(res.user);
-    }
-    return res;
-  };
-
   const logout = () => {
     localStorage.removeItem('taskora_token');
     setUser(null);
@@ -65,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, demoLogin, logout, updateUserProfile }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, updateUserProfile }}>
       {children}
     </AuthContext.Provider>
   );

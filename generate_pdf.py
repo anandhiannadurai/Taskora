@@ -212,7 +212,6 @@ api_data = [
     [Paragraph("<b>Method</b>", body_style), Paragraph("<b>Endpoint</b>", body_style), Paragraph("<b>Auth</b>", body_style), Paragraph("<b>Description & Payload</b>", body_style)],
     [Paragraph("POST", body_style), Paragraph("/api/auth/register", body_style), Paragraph("Public", body_style), Paragraph("Registers new user, hashes password, returns JWT token.", body_style)],
     [Paragraph("POST", body_style), Paragraph("/api/auth/login", body_style), Paragraph("Public", body_style), Paragraph("Authenticates email/password, returns signed JWT token.", body_style)],
-    [Paragraph("POST", body_style), Paragraph("/api/auth/demo-login", body_style), Paragraph("Public", body_style), Paragraph("Single-click demo login for Admin, Project Lead, or Developer roles.", body_style)],
     [Paragraph("GET", body_style), Paragraph("/api/workspaces", body_style), Paragraph("JWT", body_style), Paragraph("Lists workspaces with status/priority filtering and computed progress %.", body_style)],
     [Paragraph("POST", body_style), Paragraph("/api/workspaces", body_style), Paragraph("JWT", body_style), Paragraph("Creates new workspace with Idea, Building, Testing, or Delivered stage.", body_style)],
     [Paragraph("GET", body_style), Paragraph("/api/tasks", body_style), Paragraph("JWT", body_style), Paragraph("Fetches sprint work items with workspace and assignee details.", body_style)],

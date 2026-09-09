@@ -35,7 +35,6 @@ export const api = {
   auth: {
     login: (credentials) => apiClient.post('/auth/login', credentials),
     register: (userData) => apiClient.post('/auth/register', userData),
-    demoLogin: (role) => apiClient.post('/auth/demo-login', { role }),
     me: () => apiClient.get('/auth/me'),
     forgotPassword: (email) => apiClient.post('/auth/forgot-password', { email })
   },

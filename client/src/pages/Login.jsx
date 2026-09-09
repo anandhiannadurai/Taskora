@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 import { ForgotPasswordModal } from '../components/modals/ForgotPasswordModal';
-import { Layers, Mail, Lock, ArrowRight, ShieldCheck, Github, Chrome, UserCheck } from 'lucide-react';
+import { Layers, Mail, Lock, ArrowRight, ShieldCheck, Github, Chrome } from 'lucide-react';
 
 export const Login = ({ onSwitchToRegister }) => {
-  const { login, demoLogin } = useAuth();
+  const { login } = useAuth();
   const { addToast } = useNotification();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,17 +29,6 @@ export const Login = ({ onSwitchToRegister }) => {
       addToast(err.message || 'Login failed. Please check your credentials.', 'error');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleDemoClick = async (role) => {
-    try {
-      const res = await demoLogin(role);
-      if (res.success) {
-        addToast(`Logged in as ${res.user.name} (${role})`, 'success');
-      }
-    } catch (err) {
-      addToast('Demo login failed. Make sure server is running and seeded.', 'error');
     }
   };
 
@@ -86,41 +75,6 @@ export const Login = ({ onSwitchToRegister }) => {
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                 Access your projects, tasks and team collaboration platform
               </p>
-            </div>
-
-            {/* Quick Demo Role Single-Click Buttons */}
-            <div className="p-3 rounded-2xl bg-brand-50/60 dark:bg-brand-950/30 border border-brand-200 dark:border-brand-800/40 space-y-2">
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 flex items-center gap-1.5">
-                  <UserCheck className="w-3.5 h-3.5" /> Quick Demo Access:
-                </span>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5 font-medium">
-                  Explore Taskora instantly using demo accounts.
-                </p>
-              </div>
-              <div className="grid grid-cols-3 gap-2 pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleDemoClick('Admin')}
-                  className="py-1.5 px-2 rounded-xl text-[11px] font-bold bg-white dark:bg-dark-card text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:border-brand-500 transition-all shadow-sm"
-                >
-                  👑 Admin
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleDemoClick('Project Manager')}
-                  className="py-1.5 px-2 rounded-xl text-[11px] font-bold bg-white dark:bg-dark-card text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:border-brand-500 transition-all shadow-sm"
-                >
-                  📊 Manager
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleDemoClick('Developer')}
-                  className="py-1.5 px-2 rounded-xl text-[11px] font-bold bg-white dark:bg-dark-card text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:border-brand-500 transition-all shadow-sm"
-                >
-                  💻 Developer
-                </button>
-              </div>
             </div>
 
             {/* Main Form */}

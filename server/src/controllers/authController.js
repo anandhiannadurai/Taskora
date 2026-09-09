@@ -70,39 +70,6 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.demoLogin = async (req, res) => {
-  try {
-    const { role } = req.body;
-    const targetRole = role || 'Admin';
-
-    const users = await query('SELECT * FROM users WHERE role = ? LIMIT 1', [targetRole]);
-    let user = users && users.length > 0 ? users[0] : null;
-
-    if (!user) {
-      const allUsers = await query('SELECT * FROM users LIMIT 1');
-      if (allUsers && allUsers.length > 0) {
-        user = allUsers[0];
-      } else {
-        return res.status(404).json({ success: false, message: 'No demo users found' });
-      }
-    }
-
-    const payload = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      avatar: user.avatar,
-      theme: user.theme
-    };
-
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
-    res.json({ success: true, message: `Logged in as ${user.name} (${user.role})`, token, user: payload });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Demo login error' });
-  }
-};
-
 exports.me = async (req, res) => {
   try {
     const users = await query('SELECT id, name, email, role, avatar, title, bio, theme FROM users WHERE id = ?', [req.user.id]);
